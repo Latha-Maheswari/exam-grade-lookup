@@ -9,10 +9,10 @@ const Header = () => {
           <GraduationCap size={32} />
           <div>
             <h1 className="text-2xl md:text-3xl font-bold">
-              Exam Results Portal
+              Parisutham Institute Of Technology and Science
             </h1>
             <p className="text-blue-100 text-sm md:text-base">
-              Check your examination results instantly
+              Exam Results Portal - Check your examination results instantly
             </p>
           </div>
         </div>

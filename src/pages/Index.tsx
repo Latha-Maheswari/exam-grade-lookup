@@ -11,9 +11,10 @@ const Index = () => {
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Check Your Exam Results
+            PITS Exam Results
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Welcome to Parisutham Institute Of Technology and Science exam results portal. 
             Enter your registration details below to view your examination results. 
             Make sure to provide accurate information for successful verification.
           </p>
@@ -26,10 +27,10 @@ const Index = () => {
       <footer className="bg-gray-800 text-white py-8 mt-16">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-300">
-            © 2025 Exam Results Portal. All rights reserved.
+            © 2025 Parisutham Institute Of Technology and Science. All rights reserved.
           </p>
           <p className="text-sm text-gray-400 mt-2">
-            For technical support, contact: support@examportal.edu
+            For technical support, contact: results@pits.edu.in
           </p>
         </div>
       </footer>
