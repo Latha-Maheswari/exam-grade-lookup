@@ -8,13 +8,13 @@ import { Separator } from "@/components/ui/separator";
 
 const OrderSection = () => {
   const [orderItems] = useState([
-    { id: 1, name: "Grilled Chicken Bowl", price: 12.99, quantity: 2 },
-    { id: 2, name: "Caesar Salad", price: 8.99, quantity: 1 }
+    { id: 1, name: "Grilled Chicken Bowl", price: 299, quantity: 2 },
+    { id: 2, name: "Caesar Salad", price: 199, quantity: 1 }
   ]);
 
   const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const tax = subtotal * 0.08;
-  const delivery = 2.99;
+  const tax = subtotal * 0.18; // GST in India
+  const delivery = 49;
   const total = subtotal + tax + delivery;
 
   return (
@@ -41,7 +41,7 @@ const OrderSection = () => {
                     <h4 className="font-semibold">{item.name}</h4>
                     <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
                   </div>
-                  <span className="font-bold">${(item.price * item.quantity).toFixed(2)}</span>
+                  <span className="font-bold">₹{(item.price * item.quantity).toFixed(0)}</span>
                 </div>
               ))}
               
@@ -50,20 +50,20 @@ const OrderSection = () => {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>₹{subtotal.toFixed(0)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Tax</span>
-                  <span>${tax.toFixed(2)}</span>
+                  <span>GST (18%)</span>
+                  <span>₹{tax.toFixed(0)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Delivery</span>
-                  <span>${delivery.toFixed(2)}</span>
+                  <span>₹{delivery.toFixed(0)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-                  <span className="text-orange-600">${total.toFixed(2)}</span>
+                  <span className="text-orange-600">₹{total.toFixed(0)}</span>
                 </div>
               </div>
             </CardContent>
@@ -87,27 +87,27 @@ const OrderSection = () => {
               
               <div>
                 <Label htmlFor="phone">Phone Number</Label>
-                <Input id="phone" placeholder="(555) 123-4567" />
+                <Input id="phone" placeholder="+91 98765 43210" />
               </div>
               
               <div>
                 <Label htmlFor="address">Delivery Address</Label>
-                <Input id="address" placeholder="123 Main St" />
+                <Input id="address" placeholder="123 MG Road" />
               </div>
               
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="city">City</Label>
-                  <Input id="city" placeholder="New York" />
+                  <Input id="city" placeholder="Mumbai" />
                 </div>
                 <div>
-                  <Label htmlFor="zipCode">Zip Code</Label>
-                  <Input id="zipCode" placeholder="10001" />
+                  <Label htmlFor="zipCode">Pin Code</Label>
+                  <Input id="zipCode" placeholder="400001" />
                 </div>
               </div>
               
               <Button className="w-full bg-orange-600 hover:bg-orange-700 text-lg py-3">
-                Place Order - ${total.toFixed(2)}
+                Place Order - ₹{total.toFixed(0)}
               </Button>
             </CardContent>
           </Card>

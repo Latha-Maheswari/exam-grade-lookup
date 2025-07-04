@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,27 +7,27 @@ const KitchenDashboard = () => {
   const [orders] = useState([
     {
       id: "ORD-001",
-      customer: "John Doe",
+      customer: "Rahul Sharma",
       items: ["Grilled Chicken Bowl x2", "Caesar Salad x1"],
       status: "preparing",
       time: "5 min ago",
-      total: 34.97
+      total: 797
     },
     {
       id: "ORD-002",
-      customer: "Jane Smith",
+      customer: "Priya Patel",
       items: ["Fresh Smoothie x2", "Chocolate Brownie x1"],
       status: "ready",
       time: "12 min ago",
-      total: 15.97
+      total: 407
     },
     {
       id: "ORD-003",
-      customer: "Mike Johnson",
+      customer: "Arjun Kumar",
       items: ["Grilled Chicken Bowl x1"],
       status: "new",
       time: "2 min ago",
-      total: 12.99
+      total: 299
     }
   ]);
 
@@ -97,7 +96,7 @@ const KitchenDashboard = () => {
                     <Badge className={getStatusColor(order.status)}>
                       {getStatusText(order.status)}
                     </Badge>
-                    <p className="text-lg font-bold mt-2">${order.total.toFixed(2)}</p>
+                    <p className="text-lg font-bold mt-2">₹{order.total.toFixed(0)}</p>
                   </div>
                 </div>
               </CardHeader>

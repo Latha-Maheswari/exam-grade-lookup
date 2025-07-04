@@ -19,7 +19,7 @@ const MenuSection = () => {
       id: 1,
       name: "Grilled Chicken Bowl",
       category: "mains",
-      price: 12.99,
+      price: 299,
       description: "Tender grilled chicken with quinoa, roasted vegetables, and herb sauce",
       image: "/placeholder.svg"
     },
@@ -27,7 +27,7 @@ const MenuSection = () => {
       id: 2,
       name: "Caesar Salad",
       category: "appetizers",
-      price: 8.99,
+      price: 199,
       description: "Fresh romaine lettuce, croutons, parmesan cheese, and caesar dressing",
       image: "/placeholder.svg"
     },
@@ -35,7 +35,7 @@ const MenuSection = () => {
       id: 3,
       name: "Chocolate Brownie",
       category: "desserts",
-      price: 5.99,
+      price: 149,
       description: "Rich chocolate brownie with vanilla ice cream and chocolate sauce",
       image: "/placeholder.svg"
     },
@@ -43,7 +43,7 @@ const MenuSection = () => {
       id: 4,
       name: "Fresh Smoothie",
       category: "beverages",
-      price: 4.99,
+      price: 129,
       description: "Blend of fresh fruits, yogurt, and honey",
       image: "/placeholder.svg"
     }
@@ -92,7 +92,7 @@ const MenuSection = () => {
                 <CardTitle className="mb-2">{item.name}</CardTitle>
                 <p className="text-gray-600 text-sm mb-4">{item.description}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-orange-600">${item.price}</span>
+                  <span className="text-2xl font-bold text-orange-600">₹{item.price}</span>
                   <Button className="bg-orange-600 hover:bg-orange-700">
                     Add to Cart
                   </Button>
