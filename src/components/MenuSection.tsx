@@ -2,9 +2,12 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { toast } from "@/hooks/use-toast";
 
 const MenuSection = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const { addToCart } = useCart();
 
   const categories = [
     { id: "all", name: "All Items" },
@@ -69,47 +72,70 @@ const MenuSection = () => {
     ? menuItems 
     : menuItems.filter(item => item.category === selectedCategory);
 
+  const handleAddToCart = (item: typeof menuItems[0]) => {
+    addToCart({
+      id: item.id,
+      name: item.name,
+      price: item.price,
+      image: item.image
+    });
+    toast({
+      title: "Added to Cart",
+      description: `${item.name} has been added to your cart.`,
+    });
+  };
+
   return (
-    <section id="menu" className="py-16">
+    <section id="menu" className="py-20 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-            Our Menu
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            Our Delicious Menu
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Discover our carefully crafted dishes made with fresh, high-quality ingredients
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Discover our carefully crafted dishes made with fresh, high-quality ingredients sourced from local farms
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map((category) => (
             <Button
               key={category.id}
               variant={selectedCategory === category.id ? "default" : "outline"}
               onClick={() => setSelectedCategory(category.id)}
-              className="rounded-full"
+              className={`rounded-full px-6 py-3 font-semibold transition-all duration-300 ${
+                selectedCategory === category.id 
+                  ? "bg-orange-600 hover:bg-orange-700 shadow-lg scale-105" 
+                  : "hover:bg-orange-50 hover:border-orange-300 hover:text-orange-700"
+              }`}
             >
               {category.name}
             </Button>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {filteredItems.map((item) => (
-            <Card key={item.id} className="hover:shadow-lg transition-shadow">
-              <CardHeader className="p-0">
+            <Card key={item.id} className="group hover:shadow-2xl transition-all duration-300 border-0 shadow-lg overflow-hidden bg-white/80 backdrop-blur-sm">
+              <CardHeader className="p-0 relative overflow-hidden">
                 <img 
                   src={item.image} 
                   alt={item.name}
-                  className="w-full h-48 object-cover rounded-t-lg"
+                  className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </CardHeader>
               <CardContent className="p-6">
-                <CardTitle className="mb-2">{item.name}</CardTitle>
-                <p className="text-gray-600 text-sm mb-4">{item.description}</p>
+                <CardTitle className="mb-3 text-xl font-bold text-gray-900 group-hover:text-orange-600 transition-colors">
+                  {item.name}
+                </CardTitle>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">{item.description}</p>
                 <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-orange-600">₹{item.price}</span>
-                  <Button className="bg-orange-600 hover:bg-orange-700">
+                  <span className="text-3xl font-bold text-orange-600">₹{item.price}</span>
+                  <Button 
+                    onClick={() => handleAddToCart(item)}
+                    className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  >
                     Add to Cart
                   </Button>
                 </div>
